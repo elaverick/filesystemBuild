@@ -1,7 +1,7 @@
 Summary:    Default file system
 Name:       filesystem
 Version:    1
-Release:    4%{PKG_RELEASE}
+Release:    1%{PKG_RELEASE}
 License:    GPLv3
 Group:      System Environment/Base
 Vendor:     Mewl Linux
