@@ -9,7 +9,9 @@ URL:        http://www.linuxfromscratch.org
 Distribution:   Proton
 
 # This isn't defined otherwise
+%define _libdir /usr/lib
 %define _lib64dir /usr/lib64
+
 
 %description
 The filesystem package is one of the basic packages that is installed
