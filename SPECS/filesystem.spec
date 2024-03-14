@@ -21,7 +21,7 @@ for the directories. This version is for a system configured with systemd.
 %install
 install -vdm 755 %{buildroot}/{dev,proc,run/{media/{floppy,cdrom},lock},sys}
 install -vdm 755 %{buildroot}/{boot,etc/{opt,sysconfig},home,mnt}
-install -vdm 755 %{buildroot}/{var}
+install -vdm 755 %{buildroot}/var
 install -dv -m 0750 %{buildroot}/root
 install -dv -m 1777 %{buildroot}/tmp %{buildroot}%{_var}/tmp
 install -vdm 755 %{buildroot}%{_usr}/{,local/}{bin,include,lib,sbin,src}
@@ -384,14 +384,10 @@ touch %{buildroot}%{_sysconfdir}/fstab
 
 #   8.3.2. Configuring Linux Module Load Order
 install -vdm 755 %{buildroot}%{_sysconfdir}/modprobe.d
-cat > %{buildroot}%{_sysconfdir}/modprobe.d/usb.conf <<- "EOF"
-# Begin /etc/modprobe.d/usb.conf
-
-install ohci_hcd /sbin/modprobe ehci_hcd ; /sbin/modprobe -i ohci_hcd ; true
-install uhci_hcd /sbin/modprobe ehci_hcd ; /sbin/modprobe -i uhci_hcd ; true
-
-# End /etc/modprobe.d/usb.conf
-EOF
+echo "# Begin /etc/modprobe.d/usb.conf" >> %{buildroot}%{_sysconfdir}/modprobe.d/usb.conf
+echo "install ohci_hcd /sbin/modprobe ehci_hcd ; /sbin/modprobe -i ohci_hcd ; true" >> %{buildroot}%{_sysconfdir}/modprobe.d/usb.conf
+echo "install uhci_hcd /sbin/modprobe ehci_hcd ; /sbin/modprobe -i uhci_hcd ; true" >> %{buildroot}%{_sysconfdir}/modprobe.d/usb.conf
+echo "# End /etc/modprobe.d/usb.conf" >> %{buildroot}%{_sysconfdir}/modprobe.d/usb.conf
 #       chapter 9.1. The End
 
 %files
