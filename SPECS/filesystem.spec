@@ -8,6 +8,9 @@ Vendor:     Mewl Linux
 URL:        http://www.linuxfromscratch.org
 Distribution:   Proton
 
+# This isn't defined otherwise
+%define _lib64dir /usr/lib64
+
 %description
 The filesystem package is one of the basic packages that is installed
 on a Linux system. Filesystem contains the basic directory
